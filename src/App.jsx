@@ -37,13 +37,13 @@ function App() {
       {isLoading ? (
         <div className="h-full w-full font-sans relative">
           <p
-            className="text-black mx-[120px] font-[500] text-[25px] uppercase opacity-0 break-normal text-center absolute left-0 right-0 top-64"
+            className="text-black mx-[10vw] font-[500] text-[25px] uppercase opacity-0 break-normal text-center absolute left-0 right-0 top-[43vh]"
             ref={s1Ref}
           >
             "Innovations in Real Time Mission Control for Autonomous Systems and IoT"
           </p>
           <p
-            className="text-black mx-[120px] font-[500] text-[25px] uppercase opacity-0 break-normal text-center absolute left-0 right-0 top-64 "
+            className="text-black mx-[10vw] font-[500] text-[25px] uppercase opacity-0 break-normal text-center absolute left-0 right-0 top-[43vh] "
             ref={s2Ref}
           >
             International Conference 2023

@@ -22,12 +22,12 @@ const Landing = () => {
   }, []);
 
   return (
-    <div className="landing ml-[164px] mt-[80px]">
+    <div className="landing ml-[13vw] mt-[16vh]">
       <div>
         <h1 className="title opacity-0 text-[90px]" ref={titleRef}>
           IRMCAS 2023
         </h1>
-        <ul className="text-[24px] opacity-0 mt-[45px]" ref={infoListRef}>
+        <ul className="text-[24px] opacity-0 mt-[7vh]" ref={infoListRef}>
           <li>Date: 14 October 2023</li>
           <li>Location: Chennai, Tamil Nadu, India</li>
           <li>Hosted by: SRM Institute of Science And Technology</li>
