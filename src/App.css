@@ -1,0 +1,58 @@
+.landing{
+    height: 100vh;
+    width: 100vh;
+    background: #FFFFFF;
+    
+    align-items: center;
+    justify-content: center;
+}
+.title{
+font-family: 'Monoton';
+font-weight: 100;
+font-size: 96px;
+
+
+
+}
+.one{
+    list-style: none;
+    font-family: 'Fira Mono';
+}
+
+
+.organ{
+height: 50vh;
+width: 100%;
+display: flex;
+flex-direction: column;
+align-items: center;
+}
+.chairlist{
+    height: 50vh;
+width: 100%;
+display: flex;
+flex-direction: column;
+align-items: center;
+}
+.organimg{
+    height: 100%;
+    width: 100%;
+    margin: 5px;
+}
+
+.head{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.chairman{
+    display: flex;
+    
+}
+.chair{
+    margin: 50px;
+}
+.chairmanhead{
+    margin-bottom: 50px;
+}

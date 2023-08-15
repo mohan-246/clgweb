@@ -1,32 +1,63 @@
-import React from 'react';
-import './App.css'; // Import your CSS file
-
-const Header = ({ title }) => (
-  <header>
-    <h1>{title}</h1>
-  </header>
-);
-
-const ConferenceDetails = ({ date, location, university }) => (
-  <div className="conference-details">
-    <p>Date: {date}</p>
-    <p>Location: {location}</p>
-    <p>Hosted by: {university}</p>
-  </div>
-);
-
-// Create similar components for other sections...
+import React, { useEffect, useState, useRef } from "react";
+import "./App.css"; // Import your CSS file
+import Landing from "./components/Landing";
+import Chairman from "./components/Chairman";
+import Organising from "./components/Organising";
+import Topics from "./components/Topics";
+import ConferenceTrack from "./components/ConferenceTrack";
+import { gsap, Power3 } from "gsap";
 
 function App() {
+  const [isLoading, setIsLoading] = useState(true);
+  const s1Ref = useRef();
+  const s2Ref = useRef();
+
+  useEffect(() => {
+    const tl = gsap.timeline();
+
+    tl.fromTo(
+      s1Ref.current,
+      { opacity: 0, y: -300 },
+      { opacity: 1, y: 0, duration: 2, ease: Power3.easeIn }
+    )
+      .to(s1Ref.current, { opacity: 0, y: 300, duration: 2, ease: Power3.easeOut })
+      .fromTo(
+        s2Ref.current,
+        { opacity: 0, y: -300 },
+        { opacity: 1, y: 0, duration: 2, ease: Power3.easeIn }
+      )
+      .to(s2Ref.current, { opacity: 0, y: 300, duration: 2, ease: Power3.easeOut })
+      .eventCallback("onComplete", () => {
+        setIsLoading(false);
+      });
+  }, []);
+
   return (
     <div className="App">
-      <Header title="IRMCAS2023" />
-      <ConferenceDetails
-        date="14 October 2023"
-        location="Chennai, Tamil Nadu, India"
-        university="SRM Institute of Science And Technology"
-      />
-      {/* Render other components here */}
+      {isLoading ? (
+        <div className="h-full w-full relative">
+          <p
+            className="text-black mx-[100px] font-extrabold text-[60px] uppercase opacity-0 break-normal text-center absolute left-0 right-0 top-36"
+            ref={s1Ref}
+          >
+            "Innovations in Real Time Mission Control for Autonomous Systems and IoT"
+          </p>
+          <p
+            className="text-black mx-[100px] font-extrabold text-[60px] uppercase opacity-0 break-normal text-center absolute left-0 right-0 top-56 "
+            ref={s2Ref}
+          >
+            International Conference 2023
+          </p>
+        </div>
+      ) : (
+        <>
+          <Landing />
+          <Chairman />
+          <Organising />
+          <Topics />
+          <ConferenceTrack />
+        </>
+      )}
     </div>
   );
 }
