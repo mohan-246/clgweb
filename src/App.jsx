@@ -9,7 +9,7 @@ import Lenis from '@studio-freight/lenis'
 import { gsap, Power3 } from "gsap";
 
 function App() {
-  const [isLoading, setIsLoading] = useState(false); // Set isLoading to true initially
+  const [isLoading, setIsLoading] = useState(true); // Set isLoading to true initially
   const s1Ref = useRef();
   const s2Ref = useRef();
 
