@@ -1,58 +1,91 @@
-.landing{
+
+/* Landing Section */
+.landing {
     height: 100vh;
-    width: 100vh;
-    background: #FFFFFF;
-    
+    width: 100vh; /* Is this intended? It might be a typo. */
+    background: transparent;
     align-items: center;
     justify-content: center;
-}
-.title{
-font-family: 'Monoton';
-font-weight: 100;
-font-size: 96px;
-
-
-
-}
-.one{
+  }
+  
+  .title {
+    font-family: "Monoton";
+    font-weight: 100;
+  }
+  
+  /* List Styles */
+  .one {
     list-style: none;
-    font-family: 'Fira Mono';
-}
-
-
-.organ{
-height: 50vh;
-width: 100%;
-display: flex;
-flex-direction: column;
-align-items: center;
-}
-.chairlist{
+    font-family: "Fira Mono";
+  }
+  
+  /* Organising Section */
+  .organ {
     height: 50vh;
-width: 100%;
-display: flex;
-flex-direction: column;
-align-items: center;
-}
-.organimg{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .organimg {
     height: 100%;
     width: 100%;
     margin: 5px;
-}
-
-.head{
+  }
+  
+  /* Chairman Section */
+  .chairlist {
+    height: 50vh;
+    width: 100%;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
-}
-
-.chairman{
+  }
+  
+  .chairman {
     display: flex;
-    
-}
-.chair{
+  }
+  
+  .chair {
     margin: 50px;
-}
-.chairmanhead{
-    margin-bottom: 50px;
-}
+  }
+  
+  /* Conference Track Section */
+  .conference-section {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .conf-h {
+    font-family: "Fira Mono";
+  }
+  
+  .conf-ul {
+    margin-left: 3vw;
+    list-style-type: circle;
+  }
+  
+  .scrollAnimate1 {
+    margin-bottom: 5vh;
+  }
+  
+  /* Centered Axis */
+  .centered-axis-x-y {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  /* Hide Scrollbars */
+  body {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* Internet Explorer and Microsoft Edge */
+  }
+  
+  /* For Webkit browsers like Chrome and Safari */
+  body::-webkit-scrollbar {
+    display: none;
+  }
+  

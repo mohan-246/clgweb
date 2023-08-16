@@ -1,136 +1,179 @@
-import React from 'react'
+import  { useRef, useEffect } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 const Topics = () => {
-    
-  return (
-    <div>
-    {" "}
-    <h1>I. Topics being covered </h1>
-    <ol>
-      <li>
-        Real-time data analytics for mission control in autonomous systems
-      </li>
-      <li>oT-enabled mission control systems and their applications</li>
-      <li>Advances in autonomous navigation and control algorithms</li>
-      <li>
-        Cybersecurity and privacy challenges in autonomous systems and IoT.
-      </li>
-      <li>
-        Edge computing and distributed intelligence in mission control systems
-      </li>
-      <li>
-        Interoperability and standardization in IoT for mission control
-        applications
-      </li>
-      <li>
-        Sensor fusion and data integration techniques for real-time
-        decision-making
-      </li>
-      <li>
-        Machine learning and artificial intelligence for autonomous systems and
-        IoT
-      </li>
-      <li>
-        Case studies and applications of real-time mission control in various
-        industries (e.g., transportation, healthcare, manufacturing){" "}
-      </li>
-      <li>
-        Human-machine interaction and collaboration in mission control systems
-        These topics will cover various aspects of real-time mission control and
-        autonomous systems, including technologies, methodologies, challenges,
-        and applications. The conference concentration however, is not
-        restricted to the subjects mentioned. Recent developments in the
-        research fields are encouraged{" "}
-      </li>
-    </ol>
-    <h2>
-      Relevance and Importance of the Topics in the Context of National Needs
-    </h2>
-    <p>
-      The topics covered in the conference, "Advancements in Real-Time Mission
-      Control and Autonomous Systems," hold great relevance and importance in
-      the context of national needs for several reasons:
-    </p>
-    <ol>
-      <li>
-        <strong>Technological Innovation:</strong> Technological innovation
-        drives economic growth, competitiveness, and societal progress. In the
-        context of real-time mission control for autonomous systems and IoT,
-        innovation is crucial to developing new solutions, improving existing
-        systems, and advancing the state of the art. This National conference
-        focuses on innovations in these areas foster collaboration, knowledge
-        sharing, and the exchange of ideas, driving technological advancement
-        within the country.
-      </li>
-      <li>
-        <strong>National Security:</strong> Real-time mission control for
-        autonomous systems and IoT has implications for national security.
-        Safeguarding critical infrastructure, ensuring data privacy and
-        integrity, and protecting against cyber threats are paramount concerns.
-        Discussions and research on topics related to cybersecurity, data
-        analytics, and control algorithms in the conference help address
-        national security needs by enhancing resilience and enabling robust
-        protection measures.
-      </li>
-      <li>
-        <strong>Human-Machine Interface:</strong> The interface between humans
-        and autonomous systems is crucial for effective mission control. Topics
-        related to human-machine interface explore how humans interact with
-        autonomous systems, including user experience, decision-making
-        processes, and interface design. By focusing on these topics, the
-        conference addresses the need for intuitive and efficient interfaces,
-        enhancing the usability and effectiveness of mission control systems.
-      </li>
-      <li>
-        <strong>Safety and Reliability:</strong> Topics such as sensor fusion,
-        fault tolerance, system redundancy, and testing methodologies are
-        crucial for ensuring safe and dependable operations. The conference
-        highlights advancements in these areas, contributing to national needs
-        by promoting the development and deployment of robust, secure, and
-        resilient autonomous systems.
-      </li>
-      <li>
-        <strong>Infrastructure and Urban Development:</strong> The deployment of
-        autonomous systems and IoT in areas like transportation, smart cities,
-        and infrastructure management can significantly improve efficiency,
-        safety, and sustainability. Topics like sensor fusion, machine learning,
-        and edge computing are relevant to optimizing infrastructure and urban
-        development, meeting national needs in these areas.
-      </li>
-    </ol>
-    <h2>Relevance and Importance of the Topics to ISRO</h2>
-    <p>
-      The conference serves as a platform for collaboration and networking among
-      researchers, experts, and industry professionals working in the field of
-      real-time mission control and autonomous systems. The conference focuses
-      on autonomous system integration, navigation algorithms, and AI
-      applications aligns with ISRO's efforts to develop and deploy advanced
-      autonomous systems for space missions.
-    </p>
-    <ol>
-      <li>
-        <strong>Real-time Mission Control Systems:</strong> ISRO uses real-time
-        mission control systems to monitor and manage its space missions.
-      </li>
-      <li>
-        <strong>Autonomous Systems in Space Exploration:</strong> Autonomous
-        systems play a crucial role in space exploration and satellite
-        operations.
-      </li>
-      <li>
-        <strong>Technical Needs:</strong> Covering verification, validation,
-        testing, and cybersecurity addresses the technical needs of developing
-        robust and secure systems for ISRO's space missions.
-      </li>
-      <li>
-        <strong>Sharing Innovations:</strong> The conference provides a platform
-        for sharing innovative ideas, research findings, and technological
-        advancements that can be adopted by ISRO to further enhance its mission
-        control and autonomous systems.
-      </li>
-    </ol>
-  </div>
-  )
-}
+  const img1Ref = useRef();
+  const img2Ref = useRef();
+  const img3Ref = useRef();
 
-export default Topics
+  useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
+  
+    const scrollAnimateElements = gsap.utils.toArray(".topic-item");
+  
+    scrollAnimateElements.forEach((scrollAnimateElement, index) => {
+      const imgRef = scrollAnimateElement.querySelector(".bg-image");
+      const animationTimeline = gsap.timeline({
+        scrollTrigger: {
+          trigger: scrollAnimateElement,
+          start: "top 80%",
+          end: "bottom 20%",
+          markers: false,
+          scrub: false,
+        },
+      });
+  
+      // Animate image
+      animationTimeline.fromTo(
+        imgRef,
+        { x: index % 2 === 0 ? -50 : 50, opacity: 0 },
+        { x: 0, opacity: 1 }
+      );
+  
+      // Animate heading
+      animationTimeline.fromTo(
+        scrollAnimateElement.querySelector("h1, h2, h3"),
+        { y:30 , opacity: 0 },
+        { y:0, opacity: 1 },0.4
+      );
+  
+      // Animate p elements
+      animationTimeline.fromTo(
+        scrollAnimateElement.querySelectorAll("p"),
+        { y:30, opacity: 0 },
+        { y: 0, opacity: 1, stagger: 0 },0.5
+      );
+  
+      // Animate ol elements
+      animationTimeline.fromTo(
+        scrollAnimateElement.querySelectorAll("ol"),
+        { y: 30, opacity: 0 },
+        { y: 0, opacity: 1, stagger: 0 },0.6
+      );
+    });
+  }, []);
+  
+
+  return (
+    <div className="topic mx-auto max-w-screen-xl p-4 topic-container overflow-hidden">
+      {/* Topic 1 */}
+      <div className="topic-1 topic-item flex flex-col md:flex-row items-center justify-center my-10">
+        {/* Placeholder image for Topic 1 */}
+        <div
+          className="imgout1 md:w-1/3 bg-cover bg-center h-[40vh] rounded-md md:mr-[4vh] mb-4 md:mb-0 bg-image"
+          style={{ backgroundImage: 'url("./p1.jpg")' }}
+          ref={img1Ref}
+        ></div>
+        {/* Content for Topic 1 */}
+        <div className="content-1 md:w-2/3">
+          <h1 className="th1-1 text-xl font-semibold mb-4 uppercase">
+            Topics being covered
+          </h1>
+          <p className="py-3">
+            {/* Content for Topic 1: Paragraph */}
+            The conference will explore real-time mission control and autonomous
+            systems, covering technology, methodologies, challenges,
+            applications, and welcoming recent research developments.
+          </p>
+          <ol className="tlist-1 list-decimal pl-4">
+            {/* Content for Topic 1: List items */}
+            <li>Real-time data analytics for autonomous systems.</li>
+            <li>IoT-enabled mission control system applications.</li>
+            <li>Advances in autonomous navigation and control algorithms.</li>
+            <li>Cybersecurity challenges in autonomous systems and IoT.</li>
+            <li>Human-machine interaction in mission control systems.</li>
+          </ol>
+        </div>
+      </div>
+
+      {/* Topic 2 */}
+      <div className="topic-2 topic-item flex flex-col md:flex-row items-center justify-center my-10 ">
+        {/* Content for Topic 2 */}
+        <div className="content-2 md:w-2/3">
+          <h2 className="th1-2 text-xl font-semibold mb-4 uppercase">
+            Relevance and Importance of the Topics in the Context of National
+            Needs
+          </h2>
+          <p className="py-3">
+            {/* Content for Topic 2: Paragraph */}
+            The topics covered in the conference, "Advancements in Real-Time
+            Mission Control and Autonomous Systems," hold great relevance and
+            importance in the context of national needs for several reasons:
+          </p>
+          <ol className="tlist-2 list-decimal pl-4">
+            {/* Content for Topic 2: List items */}
+            <li>
+              Technological Innovation: Drives economic growth, competitiveness,
+              and societal progress.
+            </li>
+            <li>
+              National Security: Implications for safeguarding critical
+              infrastructure and data privacy.
+            </li>
+            <li>
+              Human-Machine Interface: Crucial for effective mission control and
+              user experience.
+            </li>
+            <li>
+              Safety and Reliability: Ensuring safe and dependable operations.
+            </li>
+            <li>
+              Infrastructure and Urban Development: Improving efficiency and
+              sustainability.
+            </li>
+          </ol>
+        </div>
+        {/* Placeholder image for Topic 2 */}
+        <div
+          className="imgout2 md:w-1/3 bg-cover bg-center h-[40vh] rounded-md md:ml-[4vh] mb-4 md:mb-0 bg-image"
+          style={{ backgroundImage: 'url("./p2.jpg")' }}
+          ref={img2Ref}
+        ></div>
+      </div>
+
+      {/* Topic 3 */}
+      <div className="topic-1 topic-item flex flex-col md:flex-row items-center justify-center my-10">
+        {/* Placeholder image for Topic 3 */}
+        <div
+          className="imgout3 md:w-1/3 bg-cover bg-center h-[40vh] rounded-md md:mr-[4vh] mb-4 md:mb-0 bg-image"
+          style={{ backgroundImage: 'url("./p3.jpg")' }}
+          ref={img3Ref}
+        ></div>
+        {/* Content for Topic 3 */}
+        <div className="content-3 md:w-2/3">
+          <h2 className="th1-3 text-xl font-semibold mb-4 uppercase">
+            Relevance and Importance of the Topics to ISRO
+          </h2>
+          <p className="py-3">
+            {/* Content for Topic 3: Paragraph */}
+            The conference serves as a platform for collaboration and networking
+            among researchers, experts, and industry professionals working in
+            the field of real-time mission control and autonomous systems.
+          </p>
+          <ol className="tlist-3 list-decimal pl-4">
+            {/* Content for Topic 3: List items */}
+            <li>
+              Real-time Mission Control Systems: Monitoring and managing space
+              missions.
+            </li>
+            <li>
+              Autonomous Systems in Space Exploration: Crucial role in space
+              exploration and satellite operations.
+            </li>
+            <li>
+              Technical Needs: Addressing verification, validation, testing, and
+              cybersecurity.
+            </li>
+            <li>
+              Sharing Innovations: Platform for sharing innovative ideas and
+              advancements.
+            </li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Topics;
